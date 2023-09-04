@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Style for the "username","password" and "re-type password" text */
+        label {
+            text-align: left;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 130px; /* Fixed width for labels */
+        }
+
+        /* Style for the input fields */
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Align right */
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        /* Style for the input fields */
+        input {
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 3px;
+            width: 250px; /* Full-width */
+        }
+
+        /* Style for buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Style for reset and submit buttons */
+        button {
+            padding: 10px;
+            border: 1px solid #000;
+            background-color: #eee;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 20%; /* width */
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Center the pop-up */
+            width: 200px; /* Adjusted width */
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .popup-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Close the pop up window button */
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: red; /* Red background for exit button */
+            padding: 5px 10px; /* Padding for exit button */
+            border-radius: 3px; /* Rounded corners for exit button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <!-- Username section -->
+            <div class="input-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <!-- Password section -->
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required pattern="^(?=.*[A-Z]).{8,16}$">
+            </div>
+            
+            <!-- Retype password section -->
+            <div class="input-container">
+                <label for="retypePassword">Re-type Password:</label>
+                <input type="password" id="retypePassword" name="retypePassword" required>
+            </div>
+
+            <!-- Reset and Submit buttons -->
+            <div class="button-container">
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Pop-up content -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="close-popup">X</span>
+            <p id="popup-message"></p>
+        </div>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById("signup-form");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const retypePasswordInput = document.getElementById("retypePassword");
+        const popup = document.getElementById("popup");
+        const popupMessage = document.getElementById("popup-message");
+        const closePopup = document.getElementById("close-popup");
+
+        signupForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Validate the form
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+            const retypePassword = retypePasswordInput.value;
+
+            // Example validation: Passwords must match
+            if (password !== retypePassword) {
+                showPopup("Your retype password does not match the password. Please try again with the reset button.");
+            } else if (!password.match(/^(?=.*[A-Z]).{8,16}$/)) {
+                showPopup("Password must contain 1 uppercase letter and be 8-16 characters long.");
+            } else {
+                showPopup("Your account has been created successfully.");
+            }
+        });
+
+        function showPopup(message) {
+            popupMessage.textContent = message;
+            popup.style.display = "block";
+        }
+
+        closePopup.addEventListener("click", function () {
+            popup.style.display = "none";
+        });
+    </script>
+</body>
+</html>

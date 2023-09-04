@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd and Even Numbers</title>
+</head>
+<body>
+    <div id="output"></div> <!-- Add a div to display the messages -->
+    <script>
+        // Reference to the output div
+        const outputDiv = document.getElementById("output");
+
+        // Loop from 1 to 15
+        for (let i = 1; i <= 15; i++) {
+            // Check if the current number is odd or even
+            if (i % 2 === 0) {
+                // Create a paragraph element for even numbers
+                const paragraph = document.createElement("p");
+                paragraph.textContent = `${i} is even`;
+                outputDiv.appendChild(paragraph);
+            } else {
+                // Create a paragraph element for odd numbers
+                const paragraph = document.createElement("p");
+                paragraph.textContent = `${i} is odd`;
+                outputDiv.appendChild(paragraph);
+            }
+        }
+    </script>
+</body>
+</html>
