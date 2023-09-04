@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Style for the input fields */
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Align right */
+            margin-top: 10px;
+            max-width: 350px;
+        }
+
+        label {
+            margin-right: 10px; /* Add a gap of 10px between label and input */
+            margin-left: 60px;
+        }
+
+        input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #b9b6b6;
+            border-radius: 3px;
+            width: calc(90% - 90px); /* Adjusted width */
+            margin-left: auto;
+            margin-right: 20px;
+            align-self: flex-start;
+        }
+
+        /* Style for buttons */
+        .button-container {
+            display: flex;
+            /* Adjust the alignment of buttons here */
+            justify-content: flex-start;
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+
+        button {
+            /* Adjust the width of buttons here */
+            width: calc(20% - 5px); /* Adjusted width */
+            padding: 2px;
+            border: 1px solid #b9b6b6;
+            background-color: #fffefe;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+        }
+
+        #multiply-btn {
+            margin-right: 10px;
+        }
+
+        /* Result display */
+        .result {
+            margin-top: 20px;
+            text-align: left;
+            font-size: large;
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiply and Divide two numbers:</h1>
+        <form id="calculator-form">
+            <div class="input-container">
+                <label for="num1">1st Number:</label>
+                <input type="number" id="num1" name="num1" required>
+            </div>
+
+            <div class="input-container">
+                <label for="num2">2nd Number:</label>
+                <input type="number" id="num2" name="num2" required>
+            </div>
+
+            <!-- Buttons for calculation -->
+            <div class="button-container">
+                <button type="button" id="multiply-btn">Multiply</button><button type="button" id="divide-btn">Divide</button>
+            </div>
+        </form>
+
+        <!-- Result display area -->
+        <div class="result" id="result">The Result is: </div>
+    </div>
+
+    <script>
+        const calculatorForm = document.getElementById("calculator-form");
+        const num1Input = document.getElementById("num1");
+        const num2Input = document.getElementById("num2");
+        const multiplyBtn = document.getElementById("multiply-btn");
+        const divideBtn = document.getElementById("divide-btn");
+        const resultDisplay = document.getElementById("result");
+
+        // Add click event listeners to the buttons
+        multiplyBtn.addEventListener("click", function () {
+            const num1 = parseFloat(num1Input.value);
+            const num2 = parseFloat(num2Input.value);
+            const result = num1 * num2;
+            resultDisplay.textContent = `The result is: ${result}`;
+        });
+
+        divideBtn.addEventListener("click", function () {
+            const num1 = parseFloat(num1Input.value);
+            const num2 = parseFloat(num2Input.value);
+            if (num2 === 0) {
+                resultDisplay.textContent = "The result is: Cannot divide by zero.";
+            } else {
+                const result = num1 / num2;
+                resultDisplay.textContent = `The result is: ${result}`;
+            }
+        });
+    </script>
+</body>
+</html>
