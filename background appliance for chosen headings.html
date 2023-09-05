@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background for h1 Elements</title>
+    <style>
+        /* Define the background style for h1 elements */
+        .highlighted {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Introduction</h1>
+    <div>
+        <h1>About HTML</h1>
+        <h1>About CSS</h1>
+    </div>
+    <h1>About JavaScript</h1>
+
+    <script>
+        // Find all h1 elements that are children of a div
+        const div = document.querySelector('div');
+        const h1Elements = div.querySelectorAll('h1');
+
+        // Apply background to each h1 element
+        h1Elements.forEach(function (element) {
+            element.classList.add('highlighted');
+        });
+    </script>
+</body>
+</html>
