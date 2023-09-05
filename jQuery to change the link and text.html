@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Link and Text</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <a href="http://www.usth.edu.vn/" id="usth">USTH Website</a>
+
+    <script>
+        // Use jQuery to change the link and text
+        $(document).ready(function () {
+            // Select the link by its ID
+            const usthLink = $('#usth');
+
+            // Change the href attribute
+            usthLink.attr('href', 'https://www.github.com'); // Replace with the new URL
+
+            // Change the link text
+            usthLink.text('Is this really visiting USTH Website?'); // Replace with the new text
+        });
+    </script>
+</body>
+</html>
