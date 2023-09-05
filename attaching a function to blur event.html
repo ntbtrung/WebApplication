@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Message on Focus</title>
+</head>
+<body>
+    <form>
+        <input id="field1" type="text" value="Field 1">
+        <input id="field2" type="text" value="Field 2">
+    </form>
+
+    <!-- Create a container to display messages -->
+    <div id="messageContainer"></div>
+
+    <script>
+        // Get references to HTML elements
+        const field1Input = document.getElementById('field1');
+        const messageContainer = document.getElementById('messageContainer');
+        
+        // Declare messageElement as a let variable initially
+        let messageElement;
+
+        // Function to show or hide the message
+        function toggleMessage(show) {
+            if (show) {
+                // If the message element doesn't exist, create it
+                if (!messageElement) {
+                    messageElement = document.createElement('p');
+                    messageElement.id = 'messageElement';
+                    messageContainer.appendChild(messageElement);
+                }
+                // Set the message text
+                messageElement.textContent = 'Field 1 lost focus';
+            } else {
+                // If the message element exists, remove it
+                if (messageElement) {
+                    messageContainer.removeChild(messageElement);
+                    messageElement = undefined; // Reset messageElement
+                }
+            }
+        }
+
+        // Attach functions to the focus and blur events of field1
+        field1Input.addEventListener('focus', function () {
+            // Hide the message when field1 gains focus
+            toggleMessage(false);
+        });
+
+        field1Input.addEventListener('blur', function () {
+            // Show the message when field1 loses focus
+            toggleMessage(true);
+        });
+    </script>
+</body>
+</html>
