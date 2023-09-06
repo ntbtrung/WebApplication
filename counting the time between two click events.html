@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Event Timing</title>
+</head>
+<body>
+    <h1>Heading1</h1>
+    <h2>Heading2</h2>
+    <p id="paragraph">Paragraph</p>
+    <button>Button</button>
+    <div id="log"></div>
+
+    <script>
+        const paragraph = document.getElementById('paragraph');
+        const log = document.getElementById('log');
+        let startTime = 0;
+
+        paragraph.addEventListener('click', function () {
+            const currentTime = new Date().getTime();
+            const elapsedTime = startTime !== 0 ? currentTime - startTime : 0;
+
+            log.innerHTML += `Time between clicks: ${elapsedTime} milliseconds<br>`;
+            startTime = currentTime;
+        });
+    </script>
+</body>
+</html>
